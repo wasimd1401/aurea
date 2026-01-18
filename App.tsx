@@ -1,108 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import CreativeGenerator from './components/LeadMagnet';
-import Contact from './components/Contact';
+import React, { useMemo, useState } from 'react';
+import {
+  CalendarCheck,
+  Dumbbell,
+  FileText,
+  LayoutDashboard,
+  Mail,
+  MapPin,
+  MessageSquareText,
+  Settings,
+  Utensils,
+} from 'lucide-react';
+import AssistantWorkspace from './components/AssistantWorkspace';
 import { CONTENT } from './constants';
 import { Language } from './types';
-import { Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
-  const [lang, setLang] = useState<Language>('es');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [lang, setLang] = useState<Language>('en');
+  const [activePanel, setActivePanel] = useState('overview');
+  const content = CONTENT[lang];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = CONTENT[lang].nav;
-
-  const scrollToTop = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const navItems = useMemo(
+    () => [
+      { id: 'overview', label: content.nav.overview, icon: LayoutDashboard },
+      { id: 'executive', label: content.nav.executive, icon: CalendarCheck },
+      { id: 'concierge', label: content.nav.concierge, icon: MapPin },
+      { id: 'training', label: content.nav.training, icon: Dumbbell },
+      { id: 'nutrition', label: content.nav.nutrition, icon: Utensils },
+      { id: 'comms', label: content.nav.comms, icon: Mail },
+      { id: 'documents', label: content.nav.documents, icon: FileText },
+      { id: 'chat', label: content.nav.chat, icon: MessageSquareText },
+      { id: 'setup', label: content.nav.setup, icon: Settings },
+    ],
+    [content]
+  );
 
   return (
-    <div className="font-sans antialiased selection:bg-austral-clay selection:text-white bg-white">
-      
-      {/* Sticky Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm border-b border-gray-100' : 'bg-transparent py-8'}`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          
-          <a href="#" onClick={scrollToTop} className="text-2xl font-serif font-bold tracking-tighter text-austral-dark z-50 relative">
-            AUREA
-          </a>
+    <div className="min-h-screen bg-slate-950 text-white flex">
+      <aside className="w-72 border-r border-white/10 bg-slate-950 px-6 py-8 hidden lg:flex flex-col">
+        <div className="mb-10">
+          <p className="text-xs uppercase tracking-[0.3em] text-slate-400">{content.brand.eyebrow}</p>
+          <h1 className="text-2xl font-serif mt-2">{content.brand.name}</h1>
+          <p className="text-sm text-slate-400 mt-3">{content.brand.subtitle}</p>
+        </div>
+        <nav className="flex-1 space-y-2">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activePanel === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActivePanel(item.id)}
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-left transition ${
+                  isActive ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                <span className="text-sm font-medium">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+        <div className="border-t border-white/10 pt-6 text-xs text-slate-500">
+          <p>{content.brand.footer}</p>
+        </div>
+      </aside>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-10">
-            <ul className="flex gap-8">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  <a href={item.href} className="text-xs uppercase tracking-widest hover:text-austral-clay transition-colors text-gray-800 font-bold">
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Language Pill */}
-            <button 
-              onClick={() => setLang(lang === 'es' ? 'en' : 'es')} 
-              className="text-[10px] font-bold w-12 h-6 flex items-center justify-center rounded-full bg-gray-100 text-austral-dark hover:bg-austral-dark hover:text-white transition-all tracking-wider"
+      <div className="flex-1 flex flex-col min-h-screen">
+        <header className="flex flex-wrap items-center justify-between gap-4 px-6 py-6 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-400">{content.topbar.label}</p>
+            <h2 className="text-2xl font-serif mt-2">{content.topbar.title}</h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 border border-white/10 rounded-full px-4 py-2">
+              <span className="text-xs text-slate-400">{content.topbar.statusLabel}</span>
+              <span className="text-sm text-white">{content.topbar.statusValue}</span>
+            </div>
+            <button
+              onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+              className="text-xs font-semibold border border-white/10 px-4 py-2 rounded-full text-slate-200 hover:bg-white/10"
             >
               {lang === 'es' ? 'EN' : 'ES'}
             </button>
           </div>
+        </header>
 
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden z-50 text-austral-dark" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-
-        {/* Mobile Overlay */}
-        <div className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-10 transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-           {navItems.map((item) => (
-                <a 
-                  key={item.label} 
-                  href={item.href} 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-3xl font-serif italic text-austral-dark hover:text-austral-clay"
-                >
-                  {item.label}
-                </a>
-              ))}
-           <button 
-              onClick={() => { setLang(lang === 'es' ? 'en' : 'es'); setIsMenuOpen(false); }} 
-              className="mt-8 text-sm font-bold border border-austral-dark px-8 py-3 rounded-full text-austral-dark uppercase tracking-widest"
-            >
-              {lang === 'es' ? 'English' : 'Español'}
-            </button>
-        </div>
-      </nav>
-
-      <main>
-        <Hero lang={lang} />
-        <Services lang={lang} />
-        <CreativeGenerator lang={lang} />
-        <Contact lang={lang} />
-      </main>
-
-      <footer className="bg-white text-austral-dark py-16 px-6 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="font-serif font-bold text-2xl tracking-tighter">AUREA</p>
-          <div className="text-xs text-gray-400 font-medium tracking-wide text-center md:text-right">
-             <p className="mb-2">Inteligencia Estratégica</p>
-             <p>&copy; {new Date().getFullYear()} Santiago, Chile</p>
-          </div>
-        </div>
-      </footer>
-
+        <main className="flex-1 p-6">
+          <AssistantWorkspace lang={lang} activePanel={activePanel} />
+        </main>
+      </div>
     </div>
   );
 };
