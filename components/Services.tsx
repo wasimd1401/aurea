@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CONTENT } from '../constants';
 import { Language } from '../types';
-import { BrainCircuit, PenTool, BarChart2, Target, Plus, Minus, ArrowUpRight, Cpu, Layout } from 'lucide-react';
+import { Briefcase, MapPin, Dumbbell, Utensils, MessageSquareText, Plus, Minus, ArrowUpRight, Layout } from 'lucide-react';
 
 interface ServicesProps {
   lang: Language;
@@ -9,8 +9,7 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ lang }) => {
   const content = CONTENT[lang].services;
-  // Specific icon set where the first one (Automation) uses a CPU/Chip icon
-  const icons = [Cpu, PenTool, BarChart2, Target, Layout];
+  const icons = [Briefcase, MapPin, Dumbbell, Utensils, MessageSquareText];
   const [activeService, setActiveService] = useState<number>(0);
 
   return (
@@ -55,7 +54,9 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
                             <div className={`h-[1px] bg-austral-clay mt-2 transition-all duration-500 ${activeService === idx ? 'w-12' : 'w-0 group-hover:w-8'}`}></div>
 
                             {isHighlight && (
-                                <span className="text-[10px] uppercase tracking-wider text-austral-gold mt-4 block font-bold">Flagship Service</span>
+                                <span className="text-[10px] uppercase tracking-wider text-austral-gold mt-4 block font-bold">
+                                  {lang === 'es' ? 'Módulo central' : 'Core module'}
+                                </span>
                             )}
                         </button>
                     )
@@ -115,7 +116,11 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
                                 <span className={`text-xs font-bold ${isHighlight ? 'text-austral-clay' : 'text-gray-400'}`}>0{idx+1}</span>
                                 <div className="flex flex-col">
                                     <h3 className="text-xl font-serif text-austral-dark">{item.title}</h3>
-                                    {isHighlight && <span className="text-[10px] uppercase text-austral-gold font-bold tracking-wider mt-1">Recomendado</span>}
+                                    {isHighlight && (
+                                      <span className="text-[10px] uppercase text-austral-gold font-bold tracking-wider mt-1">
+                                        {lang === 'es' ? 'Módulo clave' : 'Key module'}
+                                      </span>
+                                    )}
                                 </div>
                             </div>
                             {isActive ? <Minus className="w-5 h-5 text-austral-clay" /> : <Plus className="w-5 h-5 text-gray-400" />}

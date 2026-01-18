@@ -11,7 +11,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
   const content = CONTENT[lang].hero;
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 bg-white text-austral-dark overflow-hidden pt-32 pb-16">
+    <section id="top" className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 bg-white text-austral-dark overflow-hidden pt-32 pb-16">
       
       {/* Background - Clean White */}
       <div className="absolute inset-0 z-0 bg-white"></div>
@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
 
           <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-6">
             <a 
-              href="#contact" 
+              href="#setup" 
               className="bg-austral-dark text-white px-8 py-4 font-serif italic text-xl hover:bg-austral-clay transition-all duration-300 shadow-xl shadow-gray-200/50 hover:scale-[1.02] hover:shadow-2xl"
             >
               {content.cta}
@@ -62,13 +62,13 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
           </div>
         </div>
 
-        {/* Visual Column - Minimal B&W Architecture */}
+        {/* Visual Column - Calm, confident aesthetic */}
         <div className="md:col-span-5 hidden md:flex flex-col justify-center h-full relative">
             <div className="aspect-[3/4] relative overflow-hidden">
-                 {/* Extremely Minimal Architectural Detail - B&W - Reliable Source */}
+                 {/* Calm focus imagery */}
                  <img 
-                    src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1000&auto=format&fit=crop" 
-                    alt="AUREA Minimalism" 
+                    src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1000&auto=format&fit=crop" 
+                    alt="Focused desk setup" 
                     className="w-full h-full object-cover grayscale contrast-125 opacity-90 hover:opacity-100 transition-all duration-[1.5s]"
                 />
             </div>

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Services from './components/Services';
-import CreativeGenerator from './components/LeadMagnet';
+import AssistantStudio from './components/AssistantStudio';
 import Contact from './components/Contact';
 import { CONTENT } from './constants';
 import { Language } from './types';
 import { Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
-  const [lang, setLang] = useState<Language>('es');
+  const [lang, setLang] = useState<Language>('en');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           
           <a href="#" onClick={scrollToTop} className="text-2xl font-serif font-bold tracking-tighter text-austral-dark z-50 relative">
-            AUREA
+            FADI ASSISTANT
           </a>
 
           {/* Desktop Menu */}
@@ -89,16 +89,16 @@ const App: React.FC = () => {
       <main>
         <Hero lang={lang} />
         <Services lang={lang} />
-        <CreativeGenerator lang={lang} />
+        <AssistantStudio lang={lang} />
         <Contact lang={lang} />
       </main>
 
       <footer className="bg-white text-austral-dark py-16 px-6 border-t border-gray-100">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="font-serif font-bold text-2xl tracking-tighter">AUREA</p>
+          <p className="font-serif font-bold text-2xl tracking-tighter">FADI ASSISTANT</p>
           <div className="text-xs text-gray-400 font-medium tracking-wide text-center md:text-right">
-             <p className="mb-2">Inteligencia Estratégica</p>
-             <p>&copy; {new Date().getFullYear()} Santiago, Chile</p>
+             <p className="mb-2">{lang === 'es' ? 'Operaciones personales inteligentes' : 'Personal operations made intelligent'}</p>
+             <p>&copy; {new Date().getFullYear()} Fadi Personal Assistant</p>
           </div>
         </div>
       </footer>
