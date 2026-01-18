@@ -1,170 +1,324 @@
-import { NavItem, Service } from './types';
-
 export const CONTENT = {
   es: {
     nav: [
-      { label: 'Servicios', href: '#services' },
-      { label: 'Laboratorio Creativo', href: '#generator' },
-      { label: 'Contacto', href: '#contact' },
+      { label: 'Resumen', href: '#top' },
+      { label: 'Capacidades', href: '#services' },
+      { label: 'Estudio del Asistente', href: '#studio' },
+      { label: 'Configuración', href: '#setup' },
     ],
     hero: {
-      eyebrow: "INTELIGENCIA ESTRATÉGICA DESDE EL SUR",
-      headline: "Marketing Orgánico & Digital.",
-      tagline: "Instinto humano. Precisión artificial.",
-      description: "Fusionamos la potencia generativa con estrategia pura.\nResultados tangibles para el mercado de alta gama.",
-      cta: "Auditoría Gratuita",
-      ctaSecondary: "Ver Servicios",
+      eyebrow: 'ASISTENTE PERSONAL DE FADI',
+      headline: 'Una sola base para vida, trabajo y entrenamiento.',
+      tagline: 'Precisión ejecutiva. Cuidado concierge. Disciplina fitness.',
+      description:
+        'Organiza prioridades, diseña itinerarios y entrena con planes reales listos para ejecutar.\nHecho para el ritmo de Fadi, con rutinas, comidas y comunicación siempre alineadas a sus metas.',
+      cta: 'Iniciar configuración',
+      ctaSecondary: 'Ver capacidades',
       metrics: [
-        { value: "+35%", label: "Leads Calificados" },
-        { value: "40hrs", label: "Ahorro Semanal" },
-        { value: "3.5x", label: "ROI Promedio" },
-      ]
+        { value: '24/7', label: 'Soporte inmediato' },
+        { value: '7 días', label: 'Planes de entrenamiento' },
+        { value: '5 min', label: 'Outputs listos' },
+      ],
     },
     services: {
-      title: "Artesanía Digital",
-      subtitle: "Estrategia técnica para marcas que buscan el liderazgo.",
+      title: 'Diseñado para la vida de Fadi',
+      subtitle:
+        'Operaciones ejecutivas, concierge de alto nivel y coaching fitness en un mismo panel.',
       items: [
-        { 
-          title: "Automatización de Ventas", 
-          desc: "El motor silencioso de tu crecimiento.",
-          detailedDesc: "Implementamos ecosistemas autónomos (n8n, Zapier, HubSpot) que capturan y nutren leads sin intervención humana. Tu equipo cierra acuerdos, no tickets.",
-          features: ["Ecosistema n8n & Make", "Chatbots con Memoria", "Integración CRM Bidireccional"]
+        {
+          title: 'Centro Ejecutivo',
+          desc: 'Agenda diaria, prioridades y seguimiento sin fricción.',
+          detailedDesc:
+            'Convierte tareas en bloques de tiempo, prepara reuniones y crea listas de seguimiento accionables.',
+          features: ['Bloques de tiempo inteligentes', 'Briefs de reunión', 'Recordatorios de follow-up'],
         },
-        { 
-          title: "Contenido Orgánico", 
-          desc: "Narrativa de marca impulsada por datos.",
-          detailedDesc: "Modelos de lenguaje afinados específicamente para tu voz. Generamos contenido que resuena por su autenticidad y convierte por su estrategia, no por azar.",
-          features: ["Fine-tuning de Voz", "Visuales Editoriales", "Calendarios Automatizados"]
+        {
+          title: 'Concierge & Lifestyle',
+          desc: 'Reservas, viajes y experiencias curadas a medida.',
+          detailedDesc:
+            'Diseña itinerarios con ritmo realista, recomendaciones locales y checklist de reservas.',
+          features: ['Itinerarios por momento del día', 'Checklist de reservas', 'Preferencias personalizadas'],
         },
-        { 
-          title: "Analítica Predictiva", 
-          desc: "Decisiones tomadas con datos del futuro.",
-          detailedDesc: "Dejamos de mirar el retrovisor. Utilizamos algoritmos predictivos para anticipar tendencias de consumo y ajustar tu oferta antes que la competencia reaccione.",
-          features: ["Forecast de Demanda", "Análisis de Sentimiento", "Detección de Tendencias"]
+        {
+          title: 'Entrenador Personal',
+          desc: 'Rutinas de gimnasio con progresión y enfoque en objetivos.',
+          detailedDesc:
+            'Programas semanales con división de músculos, volumen y recuperación para avanzar sin estancarse.',
+          features: ['Splits por objetivo', 'Cues de técnica', 'Recuperación guiada'],
         },
-        { 
-          title: "Posicionamiento de Marca", 
-          desc: "Diferenciación en mercados saturados.",
-          detailedDesc: "Estrategias de identidad visual y verbal diseñadas para cortar el ruido digital. Establecemos tu autoridad indiscutible en el nicho.",
-          features: ["Auditoría de Competencia", "Identidad Verbal", "Arquitectura de Marca"]
+        {
+          title: 'Nutrición & Meal Prep',
+          desc: 'Planes de comida alineados a energía y resultados.',
+          detailedDesc:
+            'Menús diarios con macros sugeridas, hidratación y estrategia de preparación.',
+          features: ['Macros por meta', 'Ideas de batch cooking', 'Hidratación diaria'],
         },
-        { 
-          title: "Diseño Web & E-commerce", 
-          desc: "Infraestructura digital para la conversión.",
-          detailedDesc: "Transformación digital completa: desde sitios corporativos minimalistas hasta arquitecturas Shopify/WooCommerce robustas diseñadas para escalar.",
-          features: ["Diseño UX/UI Premium", "Integración Shopify/WooCommerce", "Transformación Digital"]
+        {
+          title: 'Comunicación & Conocimiento',
+          desc: 'Emails, análisis de documentos y chat en un mismo flujo.',
+          detailedDesc:
+            'Redacta correos claros, resume documentos y responde consultas con contexto.',
+          features: ['Drafts de email', 'Resumen + acciones', 'Chat contextual'],
         },
       ],
-      stackTitle: "Ecosistema Técnico",
-      stack: ["n8n", "Zapier", "Notion", "Make", "HubSpot", "OpenAI", "Anthropic", "Shopify"]
+      stackTitle: 'Módulos clave',
+      stack: ['Planificación diaria', 'Concierge', 'Entrenamiento', 'Nutrición', 'Email', 'Documentos', 'Chat'],
     },
     generator: {
-      title: "Ignición Creativa",
-      subtitle: "Así trabajamos tras bambalinas: nuestra IA diseña conceptos de campaña en segundos, sin mostrar el código.",
-      inputLabel1: "Nombre de Marca",
-      inputLabel2: "Producto / Servicio",
-      inputLabel3: "Público Objetivo",
-      cta: "Generar Conceptos",
-      loading: "Diseñando tu campaña...",
-      microcopy: "Sin registro. Sin spam. Solo ideas.",
-      example: "Ejemplo: Aurea / Consultoría / CEOs"
+      title: 'Estudio del Asistente',
+      subtitle:
+        'Genera planes reales, correos listos y análisis de documentos en segundos.',
+      executive: {
+        title: 'Planificador Ejecutivo',
+        description: 'Transforma tareas en una agenda con tiempos reales.',
+        labels: {
+          tasks: 'Tareas y prioridades',
+          focus: 'Enfoque del día',
+          startTime: 'Inicio',
+          endTime: 'Cierre',
+        },
+        cta: 'Crear agenda',
+        outputTitle: 'Agenda sugerida',
+      },
+      concierge: {
+        title: 'Concierge & Itinerario',
+        description: 'Construye un día perfecto con ritmo y reservas.',
+        labels: {
+          city: 'Ciudad base',
+          date: 'Fecha',
+          preferences: 'Preferencias',
+          pace: 'Ritmo del día',
+        },
+        cta: 'Crear itinerario',
+        outputTitle: 'Plan del día',
+      },
+      fitness: {
+        title: 'Entrenamiento + Comidas',
+        description: 'Rutinas y meal plan ajustados a la meta de Fadi.',
+        labels: {
+          goal: 'Meta principal',
+          days: 'Días por semana',
+          equipment: 'Equipamiento',
+          experience: 'Nivel',
+          diet: 'Estilo de alimentación',
+        },
+        cta: 'Generar plan fitness',
+        outputTitle: 'Plan semanal',
+      },
+      email: {
+        title: 'Escritor de Email',
+        description: 'Correos listos para enviar con tono exacto.',
+        labels: {
+          recipient: 'Destinatario',
+          purpose: 'Objetivo del correo',
+          tone: 'Tono',
+          points: 'Puntos clave',
+        },
+        cta: 'Crear email',
+        outputTitle: 'Borrador listo',
+      },
+      analyzer: {
+        title: 'Analizador de Documentos',
+        description: 'Resumen, acciones y preguntas clave en un vistazo.',
+        labels: {
+          document: 'Pega el documento aquí',
+        },
+        cta: 'Analizar documento',
+        outputTitle: 'Resumen ejecutivo',
+      },
+      chat: {
+        title: 'Chat del Asistente',
+        description: 'Respuestas rápidas con contexto de Fadi.',
+        labels: {
+          message: 'Escribe un mensaje',
+          hint: 'Ejemplo: prepara un plan para mañana con enfoque en reuniones y entrenamiento.',
+        },
+        cta: 'Enviar',
+      },
     },
     contact: {
-      title: "Hablemos de Futuro",
-      whatsapp: "Chat en WhatsApp",
-      whatsappBadge: "Responde en < 5m",
-      email: "contacto@aurea.cl",
-      phoneDisplay: "+56 9 8765 4321",
-      phoneLink: "https://wa.me/56987654321", 
+      title: 'Configura el asistente de Fadi',
+      subtitle:
+        'Cuéntanos cómo trabaja Fadi y el asistente generará un brief con prioridades y próximos pasos.',
+      highlights: [
+        'Agenda diaria + prioridades',
+        'Metas de entrenamiento + equipamiento',
+        'Preferencias de alimentación',
+        'Ciudad base + viajes frecuentes',
+      ],
       form: {
-        name: "Nombre Completo",
-        email: "Correo Corporativo",
-        message: "¿Qué desafío enfrentas hoy?",
-        submit: "Solicitar Propuesta"
-      }
-    }
+        name: 'Nombre',
+        focus: 'Enfoque semanal',
+        trainingGoal: 'Objetivo fitness',
+        dietaryStyle: 'Preferencias de alimentación',
+        homeCity: 'Ciudad base',
+        submit: 'Generar brief',
+      },
+      result: {
+        title: 'Brief del asistente',
+        nextStepsTitle: 'Siguientes acciones recomendadas',
+      },
+    },
   },
   en: {
     nav: [
-      { label: 'Services', href: '#services' },
-      { label: 'Creative Lab', href: '#generator' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'Overview', href: '#top' },
+      { label: 'Capabilities', href: '#services' },
+      { label: 'Assistant Studio', href: '#studio' },
+      { label: 'Setup', href: '#setup' },
     ],
     hero: {
-      eyebrow: "STRATEGIC INTELLIGENCE FROM THE SOUTH",
-      headline: "Organic & Digital Marketing.",
-      tagline: "Human instinct. Artificial precision.",
-      description: "Fusing generative power with pure strategy.\nTangible results for the high-end market.",
-      cta: "Free Audit",
-      ctaSecondary: "View Services",
+      eyebrow: "FADI'S PERSONAL ASSISTANT",
+      headline: 'One home for life, work, and training.',
+      tagline: 'Executive precision. Concierge care. Trainer discipline.',
+      description:
+        "Organize priorities, design itineraries, and train with real plans that are ready to execute.\nBuilt for Fadi's pace with routines, meals, and communication aligned to his goals.",
+      cta: 'Start the setup',
+      ctaSecondary: 'Explore capabilities',
       metrics: [
-        { value: "+35%", label: "Qualified Leads" },
-        { value: "40hrs", label: "Saved Weekly" },
-        { value: "3.5x", label: "Average ROI" },
-      ]
+        { value: '24/7', label: 'Instant support' },
+        { value: '7-day', label: 'Training plans' },
+        { value: '5 min', label: 'Ready outputs' },
+      ],
     },
     services: {
-      title: "Digital Craft",
-      subtitle: "Technical strategy for brands seeking leadership.",
+      title: "Built for Fadi's life",
+      subtitle:
+        'Executive operations, white-glove concierge, and fitness coaching in one workspace.',
       items: [
-        { 
-          title: "Sales Automation", 
-          desc: "The silent engine of your growth.",
-          detailedDesc: "We implement autonomous ecosystems (n8n, Zapier, HubSpot) that capture and nurture leads without human intervention. Your team closes deals, not tickets.",
-          features: ["n8n & Make Ecosystem", "Memory-enabled Chatbots", "Bidirectional CRM Integration"]
+        {
+          title: 'Executive Command Center',
+          desc: 'Daily priorities, calendar blocks, and follow-through without friction.',
+          detailedDesc:
+            'Turns tasks into time blocks, prepares meeting briefs, and creates follow-up checklists.',
+          features: ['Smart time blocks', 'Meeting briefing cards', 'Follow-up reminders'],
         },
-        { 
-          title: "Organic Content", 
-          desc: "Data-driven brand narrative.",
-          detailedDesc: "Language models fine-tuned specifically for your voice. We generate content that resonates through authenticity and converts through strategy, not luck.",
-          features: ["Voice Fine-tuning", "Editorial Visuals", "Automated Calendars"]
+        {
+          title: 'Concierge & Lifestyle',
+          desc: 'Reservations, travel, and experiences curated to taste.',
+          detailedDesc:
+            'Builds realistic itineraries with local recommendations and reservation checklists.',
+          features: ['Day-part itineraries', 'Reservation checklist', 'Preference-based picks'],
         },
-        { 
-          title: "Predictive Analytics", 
-          desc: "Decisions made with future data.",
-          detailedDesc: "Stop looking in the rearview mirror. We use predictive algorithms to anticipate consumption trends and adjust your offer before competitors react.",
-          features: ["Demand Forecasting", "Sentiment Analysis", "Trend Detection"]
+        {
+          title: 'Personal Trainer',
+          desc: 'Gym routines with progression and goal-based splits.',
+          detailedDesc:
+            'Weekly programs with muscle splits, volume guidance, and recovery built in.',
+          features: ['Goal-based splits', 'Form cues', 'Recovery guidance'],
         },
-        { 
-          title: "Brand Positioning", 
-          desc: "Differentiation in saturated markets.",
-          detailedDesc: "Visual and verbal identity strategies designed to cut through digital noise. We establish your indisputable authority in the niche.",
-          features: ["Competitor Audit", "Verbal Identity", "Brand Architecture"]
+        {
+          title: 'Nutrition & Meal Prep',
+          desc: 'Meal plans aligned to energy, macros, and results.',
+          detailedDesc:
+            'Daily menus with suggested macros, hydration targets, and prep strategy.',
+          features: ['Macro targets', 'Batch cooking ideas', 'Hydration guidance'],
         },
-        { 
-          title: "Web Design & E-commerce", 
-          desc: "Digital infrastructure for conversion.",
-          detailedDesc: "Complete digital transformation: from minimalist corporate sites to robust Shopify/WooCommerce architectures designed to scale.",
-          features: ["Premium UX/UI Design", "Shopify/WooCommerce Integration", "Digital Transformation"]
+        {
+          title: 'Comms & Knowledge',
+          desc: 'Emails, document analysis, and chat support in one flow.',
+          detailedDesc:
+            'Draft clear emails, summarize documents, and answer questions with context.',
+          features: ['Email drafts', 'Summaries + action items', 'Context-aware chat'],
         },
       ],
-      stackTitle: "Technical Ecosystem",
-      stack: ["n8n", "Zapier", "Notion", "Make", "HubSpot", "OpenAI", "Anthropic", "Shopify"]
+      stackTitle: 'Core modules',
+      stack: ['Daily planning', 'Concierge', 'Training', 'Nutrition', 'Email', 'Documents', 'Chat'],
     },
     generator: {
-      title: "Creative Ignition",
-      subtitle: "How we work behind the scenes: our AI designs campaign concepts in seconds, code unseen.",
-      inputLabel1: "Brand Name",
-      inputLabel2: "Product / Service",
-      inputLabel3: "Target Audience",
-      cta: "Generate Concepts",
-      loading: "Designing campaign...",
-      microcopy: "No signup. No spam. Just ideas.",
-      example: "Example: Aurea / Consulting / CEOs"
+      title: 'Assistant Studio',
+      subtitle:
+        'Generate real plans, ready-to-send emails, and document analyses in seconds.',
+      executive: {
+        title: 'Executive Planner',
+        description: 'Turn tasks into a timed agenda with focus blocks.',
+        labels: {
+          tasks: 'Tasks and priorities',
+          focus: 'Daily focus',
+          startTime: 'Start time',
+          endTime: 'End time',
+        },
+        cta: 'Build schedule',
+        outputTitle: 'Suggested agenda',
+      },
+      concierge: {
+        title: 'Concierge Itinerary',
+        description: 'Build a day plan with the right pacing and reservations.',
+        labels: {
+          city: 'Home city',
+          date: 'Date',
+          preferences: 'Preferences',
+          pace: 'Day pace',
+        },
+        cta: 'Create itinerary',
+        outputTitle: 'Day plan',
+      },
+      fitness: {
+        title: 'Training + Meals',
+        description: "Workout splits and meal plans tuned to Fadi's goals.",
+        labels: {
+          goal: 'Primary goal',
+          days: 'Days per week',
+          equipment: 'Equipment',
+          experience: 'Experience level',
+          diet: 'Nutrition style',
+        },
+        cta: 'Generate fitness plan',
+        outputTitle: 'Weekly plan',
+      },
+      email: {
+        title: 'Email Writer',
+        description: 'Ready-to-send emails with the right tone.',
+        labels: {
+          recipient: 'Recipient',
+          purpose: 'Email goal',
+          tone: 'Tone',
+          points: 'Key points',
+        },
+        cta: 'Create email',
+        outputTitle: 'Draft ready',
+      },
+      analyzer: {
+        title: 'Document Analyzer',
+        description: 'Executive summary, actions, and open questions at a glance.',
+        labels: {
+          document: 'Paste the document here',
+        },
+        cta: 'Analyze document',
+        outputTitle: 'Executive summary',
+      },
+      chat: {
+        title: 'Assistant Chat',
+        description: "Fast answers with Fadi's context in mind.",
+        labels: {
+          message: 'Write a message',
+          hint: 'Example: create a plan for tomorrow with meetings and training.',
+        },
+        cta: 'Send',
+      },
     },
     contact: {
-      title: "Let's Talk Future",
-      whatsapp: "Chat on WhatsApp",
-      whatsappBadge: "Reply in < 5m",
-      email: "contact@aurea.cl",
-      phoneDisplay: "+56 9 8765 4321",
-      phoneLink: "https://wa.me/56987654321",
+      title: "Set up Fadi's assistant",
+      subtitle:
+        'Tell the assistant how Fadi works and it will generate a brief with priorities and next steps.',
+      highlights: [
+        'Daily schedule + priorities',
+        'Training goals + equipment',
+        'Nutrition preferences',
+        'Home base + frequent travel',
+      ],
       form: {
-        name: "Full Name",
-        email: "Work Email",
-        message: "What challenge are you facing?",
-        submit: "Request Proposal"
-      }
-    }
-  }
+        name: 'Name',
+        focus: 'Weekly focus',
+        trainingGoal: 'Fitness goal',
+        dietaryStyle: 'Nutrition preferences',
+        homeCity: 'Home city',
+        submit: 'Generate brief',
+      },
+      result: {
+        title: 'Assistant brief',
+        nextStepsTitle: 'Recommended next actions',
+      },
+    },
+  },
 };
