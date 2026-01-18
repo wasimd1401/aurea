@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum SubmissionMethod {
+  EMAIL
+  PORTAL
+}
+
+enum LoadStatus {
+  DRAFT
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  PAID
+}
+
+enum DocumentType {
+  POD
+  LUMPER
+  SCALE
+  OTHER
+}
+
+enum SubmissionStatus {
+  SUBMITTED
+  FAILED
+}
+
+model Broker {
+  id               String           @id @default(cuid())
+  name             String
+  billingEmail     String
+  submissionMethod SubmissionMethod
+  subjectTemplate  String
+  requiredDocs     Json
+  namingRules      String
+  notes            String?
+  loads            Load[]
+  createdAt        DateTime         @default(now())
+}
+
+model Load {
+  id           String        @id @default(cuid())
+  broker       Broker        @relation(fields: [brokerId], references: [id])
+  brokerId     String
+  loadNumber   String
+  brokerRef    String
+  pickupDate   DateTime?
+  deliveryDate DateTime?
+  amount       Float?
+  status       LoadStatus    @default(DRAFT)
+  createdAt    DateTime      @default(now())
+  documents    Document[]
+  submissions  Submission[]
+  rejections   Rejection[]
+  payments     Payment[]
+}
+
+model Document {
+  id            String       @id @default(cuid())
+  load          Load         @relation(fields: [loadId], references: [id])
+  loadId        String
+  type          DocumentType
+  fileName      String
+  filePath      String
+  extractedText String?
+  createdAt     DateTime     @default(now())
+}
+
+model Submission {
+  id        String           @id @default(cuid())
+  load      Load             @relation(fields: [loadId], references: [id])
+  loadId    String
+  toEmail   String
+  subject   String
+  body      String
+  sentAt    DateTime?
+  status    SubmissionStatus @default(SUBMITTED)
+  meta      Json?
+  createdAt DateTime         @default(now())
+}
+
+model Rejection {
+  id             String   @id @default(cuid())
+  load           Load     @relation(fields: [loadId], references: [id])
+  loadId         String
+  rawText        String
+  reason         String
+  recommendedFix String
+  createdAt      DateTime @default(now())
+}
+
+model Payment {
+  id         String   @id @default(cuid())
+  load       Load     @relation(fields: [loadId], references: [id])
+  loadId     String
+  paidDate   DateTime
+  paidAmount Float?
+  notes      String?
+  createdAt  DateTime @default(now())
+}
