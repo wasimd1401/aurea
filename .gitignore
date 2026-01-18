@@ -11,6 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+.next
+uploads
+!uploads/.gitkeep
+prisma/dev.db
+prisma/dev.db-journal
+.env
+.env.local
 
 # Editor directories and files
 .vscode/*
