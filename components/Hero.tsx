@@ -1,7 +1,7 @@
 import React from 'react';
 import { CONTENT } from '../constants';
 import { Language } from '../types';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   lang: Language;
@@ -11,73 +11,60 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
   const content = CONTENT[lang].hero;
 
   return (
-    <section id="top" className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 bg-white text-austral-dark overflow-hidden pt-32 pb-16">
-      
-      {/* Background - Clean White */}
-      <div className="absolute inset-0 z-0 bg-white"></div>
+    <section id="top" className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 bg-austral-dark text-white overflow-hidden pt-36 pb-20">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-austral-dark via-black to-austral-dark"></div>
+        <div className="absolute top-10 right-10 w-[420px] h-[420px] bg-austral-clay/20 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-10 left-0 w-[320px] h-[320px] bg-austral-gold/10 rounded-full blur-[120px]"></div>
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-12 gap-16 items-center">
-        
-        {/* Typography Column */}
-        <div className="md:col-span-7 space-y-10">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-16 items-center">
+        <div className="lg:col-span-7 space-y-10">
           <div className="flex items-center gap-4">
-             <div className="h-[1px] w-12 bg-austral-clay"></div>
-             <span className="text-austral-clay font-bold tracking-[0.2em] text-xs uppercase">{content.eyebrow}</span>
+            <div className="h-[1px] w-12 bg-austral-clay"></div>
+            <span className="text-austral-gold font-semibold tracking-[0.3em] text-xs uppercase">{content.eyebrow}</span>
           </div>
-          
+
           <div className="space-y-4">
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] text-austral-dark tracking-tight">
+            <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] text-white tracking-tight">
               {content.headline}
             </h1>
-            <p className="font-serif italic text-3xl md:text-4xl text-austral-clay">
-                {content.tagline}
+            <p className="font-serif italic text-2xl md:text-3xl text-austral-clay">
+              {content.tagline}
             </p>
           </div>
 
-          <p className="text-xl font-light max-w-lg leading-relaxed text-gray-800 whitespace-pre-line">
+          <p className="text-lg md:text-xl font-light max-w-2xl leading-relaxed text-gray-200">
             {content.description}
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <a 
-              href="#setup" 
-              className="bg-austral-dark text-white px-8 py-4 font-serif italic text-xl hover:bg-austral-clay transition-all duration-300 shadow-xl shadow-gray-200/50 hover:scale-[1.02] hover:shadow-2xl"
+            <a
+              href="#contact"
+              className="bg-austral-clay text-white px-8 py-4 font-semibold text-lg hover:bg-austral-gold hover:text-austral-dark transition-all duration-300 shadow-xl shadow-black/40"
             >
               {content.cta}
             </a>
-            <a href="#services" className="group flex items-center gap-2 font-medium text-austral-dark text-sm tracking-widest uppercase border-b border-transparent hover:border-austral-dark transition-all py-2">
-                {content.ctaSecondary}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <a
+              href="#services"
+              className="group flex items-center gap-2 font-medium text-gray-200 text-sm tracking-widest uppercase border-b border-transparent hover:border-white transition-all py-2"
+            >
+              {content.ctaSecondary}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
+        </div>
 
-          {/* Metrics Strip */}
-          <div className="pt-12 grid grid-cols-3 gap-8 border-t border-gray-100 mt-12 max-w-lg">
-            {content.metrics?.map((metric, i) => (
-              <div key={i}>
-                <p className="font-serif text-3xl font-bold text-austral-dark">{metric.value}</p>
-                <p className="text-[10px] uppercase tracking-wider text-gray-500 mt-1">{metric.label}</p>
-              </div>
-            ))}
+        <div className="lg:col-span-5 hidden lg:flex flex-col justify-center h-full relative">
+          <div className="aspect-[3/4] relative overflow-hidden rounded-2xl border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1400&auto=format&fit=crop"
+              alt="Small business team collaborating"
+              className="w-full h-full object-cover opacity-80"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-austral-dark/80 to-transparent"></div>
           </div>
         </div>
-
-        {/* Visual Column - Calm, confident aesthetic */}
-        <div className="md:col-span-5 hidden md:flex flex-col justify-center h-full relative">
-            <div className="aspect-[3/4] relative overflow-hidden">
-                 {/* Calm focus imagery */}
-                 <img 
-                    src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1000&auto=format&fit=crop" 
-                    alt="Focused desk setup" 
-                    className="w-full h-full object-cover grayscale contrast-125 opacity-90 hover:opacity-100 transition-all duration-[1.5s]"
-                />
-            </div>
-        </div>
-
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-austral-clay/30">
-        <ChevronDown size={24} />
       </div>
     </section>
   );
