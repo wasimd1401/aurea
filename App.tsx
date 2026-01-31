@@ -3,14 +3,14 @@ import Hero from './components/Hero';
 import Manifesto from './components/Principles';
 import Services from './components/Services';
 import Process from './components/Process';
-import Pricing from './components/Testimonials';
+import Philosophy from './components/Testimonials';
 import Contact from './components/Contact';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Nosotros', href: '#manifiesto' },
-  { label: 'Precios', href: '#precios' },
+  { label: 'Filosofía', href: '#filosofia' },
   { label: 'Contacto', href: '#contacto' },
 ];
 
@@ -121,7 +121,7 @@ const App: React.FC = () => {
         <Manifesto />
         <Services />
         <Process />
-        <Pricing />
+        <Philosophy />
         <Contact />
       </main>
 
@@ -140,11 +140,11 @@ const App: React.FC = () => {
                 </span>
               </div>
               <p className="text-gray-400 max-w-sm mb-4">
-                La nueva era de colaboración humano + IA.
-                Construimos el futuro para que puedas vivirlo.
+                Automatización inteligente para PyMEs.
+                Herramientas no-code que cualquiera puede usar.
               </p>
               <p className="text-sm text-gray-500">
-                Hecho para humanos.
+                Hecho para humanos, no para programadores.
               </p>
             </div>
 
@@ -154,7 +154,7 @@ const App: React.FC = () => {
               <ul className="space-y-3">
                 <li><a href="#servicios" className="text-gray-300 hover:text-white transition-colors">Servicios</a></li>
                 <li><a href="#manifiesto" className="text-gray-300 hover:text-white transition-colors">Nosotros</a></li>
-                <li><a href="#precios" className="text-gray-300 hover:text-white transition-colors">Precios</a></li>
+                <li><a href="#filosofia" className="text-gray-300 hover:text-white transition-colors">Filosofía</a></li>
                 <li><a href="#contacto" className="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
               </ul>
             </div>
