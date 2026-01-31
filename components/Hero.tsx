@@ -1,83 +1,94 @@
 import React from 'react';
-import { CONTENT } from '../constants';
-import { Language } from '../types';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, TrendingUp } from 'lucide-react';
 
-interface HeroProps {
-  lang: Language;
-}
-
-const Hero: React.FC<HeroProps> = ({ lang }) => {
-  const content = CONTENT[lang].hero;
-
+export const Hero: React.FC = () => {
   return (
-    <section id="top" className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 bg-white text-austral-dark overflow-hidden pt-32 pb-16">
-      
-      {/* Background - Clean White */}
-      <div className="absolute inset-0 z-0 bg-white"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-onyx-950">
+        {/* Animated gradient orbs */}
+        <div className="orb orb-purple w-[600px] h-[600px] -top-40 -left-40" />
+        <div className="orb orb-cyan w-[500px] h-[500px] top-1/2 -right-20" />
+        <div className="orb orb-pink w-[400px] h-[400px] -bottom-20 left-1/3" />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-12 gap-16 items-center">
-        
-        {/* Typography Column */}
-        <div className="md:col-span-7 space-y-10">
-          <div className="flex items-center gap-4">
-             <div className="h-[1px] w-12 bg-austral-clay"></div>
-             <span className="text-austral-clay font-bold tracking-[0.2em] text-xs uppercase">{content.eyebrow}</span>
-          </div>
-          
-          <div className="space-y-4">
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.95] text-austral-dark tracking-tight">
-              {content.headline}
-            </h1>
-            <p className="font-serif italic text-3xl md:text-4xl text-austral-clay">
-                {content.tagline}
-            </p>
-          </div>
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 grid-pattern opacity-50" />
 
-          <p className="text-xl font-light max-w-lg leading-relaxed text-gray-800 whitespace-pre-line">
-            {content.description}
-          </p>
-
-          <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <a 
-              href="#setup" 
-              className="bg-austral-dark text-white px-8 py-4 font-serif italic text-xl hover:bg-austral-clay transition-all duration-300 shadow-xl shadow-gray-200/50 hover:scale-[1.02] hover:shadow-2xl"
-            >
-              {content.cta}
-            </a>
-            <a href="#services" className="group flex items-center gap-2 font-medium text-austral-dark text-sm tracking-widest uppercase border-b border-transparent hover:border-austral-dark transition-all py-2">
-                {content.ctaSecondary}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          {/* Metrics Strip */}
-          <div className="pt-12 grid grid-cols-3 gap-8 border-t border-gray-100 mt-12 max-w-lg">
-            {content.metrics?.map((metric, i) => (
-              <div key={i}>
-                <p className="font-serif text-3xl font-bold text-austral-dark">{metric.value}</p>
-                <p className="text-[10px] uppercase tracking-wider text-gray-500 mt-1">{metric.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Visual Column - Calm, confident aesthetic */}
-        <div className="md:col-span-5 hidden md:flex flex-col justify-center h-full relative">
-            <div className="aspect-[3/4] relative overflow-hidden">
-                 {/* Calm focus imagery */}
-                 <img 
-                    src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=1000&auto=format&fit=crop" 
-                    alt="Focused desk setup" 
-                    className="w-full h-full object-cover grayscale contrast-125 opacity-90 hover:opacity-100 transition-all duration-[1.5s]"
-                />
-            </div>
-        </div>
-
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-onyx-950/50 to-onyx-950" />
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-austral-clay/30">
-        <ChevronDown size={24} />
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-light mb-8 animate-float">
+          <Sparkles className="w-4 h-4 text-etheria-purple" />
+          <span className="text-sm font-sans text-neutral-300">AI Consulting for the Bold</span>
+        </div>
+
+        {/* Main Headline */}
+        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
+          <span className="text-neutral-50">Give Your Business</span>
+          <br />
+          <span className="shimmer-text">The Unfair Advantage</span>
+        </h1>
+
+        {/* Subheadline */}
+        <p className="font-sans text-lg md:text-xl text-neutral-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+          Enterprise-grade AI solutions, tailored for small businesses.
+          We transform complex AI technology into competitive weapons that
+          multiply your team's output and slash operational costs.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <a
+            href="#contact"
+            className="group btn-gradient px-8 py-4 rounded-full font-display font-semibold text-white flex items-center gap-3"
+          >
+            Start Your Transformation
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a
+            href="#services"
+            className="px-8 py-4 rounded-full font-display font-medium text-neutral-300 border border-neutral-700 hover:border-etheria-purple hover:text-white transition-all"
+          >
+            Explore Services
+          </a>
+        </div>
+
+        {/* Stats Strip */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto pt-12 border-t border-neutral-800">
+          <div className="text-center group">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Zap className="w-5 h-5 text-etheria-cyan" />
+              <span className="font-display text-4xl font-bold gradient-text">10x</span>
+            </div>
+            <p className="font-sans text-sm text-neutral-500">Average Productivity Boost</p>
+          </div>
+          <div className="text-center group">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <TrendingUp className="w-5 h-5 text-etheria-purple" />
+              <span className="font-display text-4xl font-bold gradient-text">60%</span>
+            </div>
+            <p className="font-sans text-sm text-neutral-500">Cost Reduction</p>
+          </div>
+          <div className="text-center group">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Sparkles className="w-5 h-5 text-etheria-pink" />
+              <span className="font-display text-4xl font-bold gradient-text">500+</span>
+            </div>
+            <p className="font-sans text-sm text-neutral-500">Small Businesses Transformed</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-xs text-neutral-500 font-sans tracking-widest uppercase">Scroll</span>
+        <div className="w-6 h-10 rounded-full border-2 border-neutral-700 flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 bg-etheria-purple rounded-full animate-bounce" />
+        </div>
       </div>
     </section>
   );

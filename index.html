@@ -1,30 +1,81 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Austral IA | Marketing Estratégico</title>
-    <!-- Google Fonts: Space Grotesk for modern headings, Inter for clean body text -->
+    <title>ONYXLABS | AI Consulting for Small Business</title>
+    <meta name="description" content="ONYXLABS gives small businesses the unfair advantage through strategic AI implementation. Transform your operations with enterprise-grade AI solutions." />
+
+    <!-- Google Fonts: Premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'austral-clay': '#701320', // Chilean Wine / Deep Burgundy
-              'austral-gold': '#D4AF37', // Muted Gold for dark backgrounds
-              'austral-dark': '#111111', // Deep Black
-              'austral-stone': '#4B5563', // Cool Gray
-              'austral-sand': '#FFFFFF', // Pure White
+              // ONYXLABS Etheria Color Palette
+              'onyx': {
+                950: '#030305',
+                900: '#0a0a0f',
+                800: '#12121a',
+                700: '#1a1a24',
+                600: '#252530',
+              },
+              'etheria': {
+                purple: '#8B5CF6',
+                violet: '#A78BFA',
+                blue: '#3B82F6',
+                cyan: '#06B6D4',
+                pink: '#EC4899',
+                rose: '#F43F5E',
+              },
+              'accent': {
+                gold: '#F59E0B',
+                amber: '#FBBF24',
+                emerald: '#10B981',
+              },
+              'neutral': {
+                50: '#FAFAFA',
+                100: '#F4F4F5',
+                200: '#E4E4E7',
+                300: '#D4D4D8',
+                400: '#A1A1AA',
+                500: '#71717A',
+              }
             },
             fontFamily: {
-              serif: ['"Cormorant Garamond"', 'serif'],
-              sans: ['"Montserrat"', 'sans-serif'],
+              display: ['"Space Grotesk"', 'sans-serif'],
+              sans: ['"Inter"', 'sans-serif'],
+              serif: ['"Playfair Display"', 'serif'],
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'shimmer': 'shimmer 2.5s linear infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)' },
+                '100%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.6)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '-200% 0' },
+                '100%': { backgroundPosition: '200% 0' },
+              },
             }
           }
         }
@@ -33,36 +84,193 @@
     <style>
       html {
         scroll-behavior: smooth;
-        /* Adds padding to the top of the scroll area to account for the fixed header */
-        scroll-padding-top: 100px;
+        scroll-padding-top: 80px;
       }
+
       body {
-        background-color: #FFFFFF;
-        color: #111111;
+        background-color: #030305;
+        color: #FAFAFA;
       }
-      .reveal-text {
-        background: linear-gradient(to right, #111111 20%, #701320 40%, #D4AF37 60%, #111111 80%);
-        background-size: 200% auto;
-        color: #000;
-        background-clip: text;
+
+      /* Etheria gradient text effect */
+      .gradient-text {
+        background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 50%, #EC4899 100%);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: shine 5s linear infinite;
       }
-      @keyframes shine {
-        to {
-          background-position: 200% center;
-        }
+
+      .gradient-text-gold {
+        background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #F59E0B 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
-      /* Hide scrollbar for clean aesthetic */
+
+      /* Animated shimmer text */
+      .shimmer-text {
+        background: linear-gradient(90deg, #8B5CF6 0%, #06B6D4 25%, #EC4899 50%, #06B6D4 75%, #8B5CF6 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s linear infinite;
+      }
+
+      /* Glowing border effect */
+      .glow-border {
+        position: relative;
+      }
+
+      .glow-border::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(135deg, #8B5CF6, #06B6D4, #EC4899);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .glow-border:hover::before {
+        opacity: 1;
+      }
+
+      /* Ethereal glow effect */
+      .etheria-glow {
+        box-shadow: 0 0 60px rgba(139, 92, 246, 0.15),
+                    0 0 100px rgba(6, 182, 212, 0.1);
+      }
+
+      /* Glass morphism */
+      .glass {
+        background: rgba(10, 10, 15, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+      }
+
+      .glass-light {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Gradient button */
+      .btn-gradient {
+        background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+      }
+
+      /* Noise texture overlay */
+      .noise-overlay::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.02;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Scrollbar styling */
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
       }
+
       ::-webkit-scrollbar-track {
-        background: #FFFFFF;
+        background: #0a0a0f;
       }
+
       ::-webkit-scrollbar-thumb {
-        background: #701320;
+        background: linear-gradient(180deg, #8B5CF6, #06B6D4);
+        border-radius: 3px;
+      }
+
+      /* Selection styling */
+      ::selection {
+        background: rgba(139, 92, 246, 0.4);
+        color: #FAFAFA;
+      }
+
+      /* Animated gradient orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .orb-purple {
+        background: radial-gradient(circle, #8B5CF6 0%, transparent 70%);
+      }
+
+      .orb-cyan {
+        background: radial-gradient(circle, #06B6D4 0%, transparent 70%);
+        animation-delay: -4s;
+      }
+
+      .orb-pink {
+        background: radial-gradient(circle, #EC4899 0%, transparent 70%);
+        animation-delay: -2s;
+      }
+
+      /* Grid pattern background */
+      .grid-pattern {
+        background-image:
+          linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+
+      /* Reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Card hover effect */
+      .card-hover {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-8px);
+        border-color: rgba(139, 92, 246, 0.3);
+      }
+
+      /* Underline animation */
+      .underline-animate {
+        position: relative;
+      }
+
+      .underline-animate::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+        transition: width 0.3s ease;
+      }
+
+      .underline-animate:hover::after {
+        width: 100%;
       }
     </style>
   <script type="importmap">

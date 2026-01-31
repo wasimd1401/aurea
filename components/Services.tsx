@@ -1,172 +1,298 @@
 import React, { useState } from 'react';
-import { CONTENT } from '../constants';
-import { Language } from '../types';
-import { Briefcase, MapPin, Dumbbell, Utensils, MessageSquareText, Plus, Minus, ArrowUpRight, Layout } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import {
+  Bot,
+  Workflow,
+  Brain,
+  BarChart3,
+  MessageSquare,
+  FileSearch,
+  ArrowRight,
+  Check,
+} from 'lucide-react';
 
-interface ServicesProps {
-  lang: Language;
+interface Service {
+  icon: React.ElementType;
+  title: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  gradient: string;
 }
 
-const Services: React.FC<ServicesProps> = ({ lang }) => {
-  const content = CONTENT[lang].services;
-  const icons = [Briefcase, MapPin, Dumbbell, Utensils, MessageSquareText];
-  const [activeService, setActiveService] = useState<number>(0);
+const services: Service[] = [
+  {
+    icon: Bot,
+    title: 'AI Automation',
+    tagline: 'Work smarter, not harder',
+    description:
+      'Eliminate repetitive tasks that drain your team. We build custom AI workflows that handle data entry, reporting, scheduling, and more—so your team focuses on what matters.',
+    features: [
+      'Custom workflow automation',
+      'Intelligent data processing',
+      'Smart scheduling systems',
+      'Automated reporting & alerts',
+    ],
+    gradient: 'from-etheria-purple to-etheria-blue',
+  },
+  {
+    icon: MessageSquare,
+    title: 'AI Assistants & Chatbots',
+    tagline: '24/7 customer support',
+    description:
+      'Deploy intelligent conversational AI that understands your business. Handle customer inquiries, qualify leads, and provide support around the clock—without growing your team.',
+    features: [
+      'Custom-trained on your data',
+      'Multi-channel deployment',
+      'Lead qualification & routing',
+      'Seamless CRM integration',
+    ],
+    gradient: 'from-etheria-cyan to-accent-emerald',
+  },
+  {
+    icon: Brain,
+    title: 'AI Strategy Consulting',
+    tagline: 'Your AI roadmap',
+    description:
+      'Not sure where to start? We analyze your operations, identify high-impact AI opportunities, and create a practical implementation roadmap tailored to your budget and goals.',
+    features: [
+      'Operations audit & analysis',
+      'ROI-focused opportunity mapping',
+      'Technology stack recommendations',
+      'Implementation timeline & milestones',
+    ],
+    gradient: 'from-etheria-pink to-etheria-purple',
+  },
+  {
+    icon: BarChart3,
+    title: 'Predictive Analytics',
+    tagline: 'See the future of your business',
+    description:
+      'Turn your data into foresight. Our AI models predict customer behavior, inventory needs, revenue trends, and market shifts—giving you the intelligence to act before competitors react.',
+    features: [
+      'Demand forecasting',
+      'Customer churn prediction',
+      'Revenue trend analysis',
+      'Inventory optimization',
+    ],
+    gradient: 'from-accent-gold to-accent-amber',
+  },
+  {
+    icon: FileSearch,
+    title: 'Document Intelligence',
+    tagline: 'Unlock your data',
+    description:
+      'Extract insights from contracts, invoices, reports, and emails automatically. Our document AI reads, understands, and organizes your unstructured data into actionable intelligence.',
+    features: [
+      'Intelligent document parsing',
+      'Contract analysis & extraction',
+      'Automated data entry',
+      'Knowledge base creation',
+    ],
+    gradient: 'from-etheria-blue to-etheria-cyan',
+  },
+  {
+    icon: Workflow,
+    title: 'Custom AI Solutions',
+    tagline: 'Built for your needs',
+    description:
+      "Have a unique challenge? We design and build custom AI solutions from the ground up. From proprietary algorithms to specialized integrations—if you can imagine it, we can build it.",
+    features: [
+      'Bespoke AI development',
+      'API & system integration',
+      'Scalable architecture',
+      'Ongoing optimization & support',
+    ],
+    gradient: 'from-etheria-violet to-etheria-pink',
+  },
+];
+
+export const Services: React.FC = () => {
+  const [activeService, setActiveService] = useState(0);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const ActiveIcon = services[activeService].icon;
 
   return (
-    <section id="services" className="min-h-screen bg-white text-austral-dark relative flex flex-col pt-32 pb-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full flex-grow flex flex-col">
-        
-        <div className="mb-20 border-t border-gray-200 pt-12 flex flex-col md:flex-row justify-between items-start md:items-end">
-          <h2 className="text-5xl md:text-6xl font-serif text-austral-dark max-w-xl leading-none tracking-tight">
-            {content.title}
+    <section id="services" className="relative py-32 bg-onyx-900 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0">
+        <div className="orb orb-purple w-[400px] h-[400px] top-20 -right-40 opacity-20" />
+        <div className="orb orb-cyan w-[300px] h-[300px] bottom-40 -left-20 opacity-20" />
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+      </div>
+
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div
+          className={`text-center mb-20 transition-all duration-1000 ${
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <span className="inline-block text-sm font-sans text-etheria-purple tracking-widest uppercase mb-4">
+            Our Services
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-50 mb-6">
+            AI Solutions That
+            <span className="gradient-text"> Drive Results</span>
           </h2>
-          <p className="mt-6 md:mt-0 text-gray-600 max-w-xs text-sm uppercase tracking-wider font-medium">
-             {content.subtitle}
+          <p className="font-sans text-lg text-neutral-400 max-w-2xl mx-auto">
+            From automation to analytics, we deliver enterprise-grade AI capabilities
+            designed specifically for small business budgets and needs.
           </p>
         </div>
 
-        {/* Desktop Split Layout */}
-        <div className="hidden lg:grid grid-cols-12 gap-0 border-t border-b border-gray-200 min-h-[600px]">
-            {/* List Side */}
-            <div className="col-span-4 border-r border-gray-200 bg-gray-50/30">
-                {content.items.map((item, idx) => {
-                    // Highlight the first item (Automation)
-                    const isHighlight = idx === 0;
-                    return (
-                        <button 
-                            key={idx}
-                            onClick={() => setActiveService(idx)}
-                            className={`w-full text-left p-10 border-b border-gray-200 last:border-0 transition-all duration-500 group relative ${activeService === idx ? 'bg-white' : 'hover:bg-white'}`}
-                        >
-                            {/* Highlight Marker */}
-                            {isHighlight && (
-                                <div className="absolute top-0 left-0 w-1 h-full bg-austral-gold"></div>
-                            )}
-                            
-                            <div className="flex justify-between items-center mb-3">
-                                <span className={`text-xs font-bold tracking-widest uppercase transition-colors ${activeService === idx || isHighlight ? 'text-austral-clay' : 'text-gray-500'}`}>0{idx + 1}</span>
-                                {activeService === idx && <ArrowUpRight className="w-4 h-4 text-austral-gold animate-fade-in" />}
-                            </div>
-                            <h3 className={`text-2xl font-serif transition-colors ${activeService === idx ? 'text-austral-dark' : 'text-gray-600 group-hover:text-austral-dark'} ${isHighlight ? 'font-bold' : ''}`}>
-                                {item.title}
-                            </h3>
-                            {/* Underline hover effect */}
-                            <div className={`h-[1px] bg-austral-clay mt-2 transition-all duration-500 ${activeService === idx ? 'w-12' : 'w-0 group-hover:w-8'}`}></div>
-
-                            {isHighlight && (
-                                <span className="text-[10px] uppercase tracking-wider text-austral-gold mt-4 block font-bold">
-                                  {lang === 'es' ? 'Módulo central' : 'Core module'}
-                                </span>
-                            )}
-                        </button>
-                    )
-                })}
-            </div>
-
-            {/* Detail Side */}
-            <div className="col-span-8 p-16 xl:p-24 flex flex-col justify-center bg-white relative overflow-hidden">
-                 
-                 <div key={activeService} className="animate-fade-in relative z-10">
-                     <div className="mb-6 inline-block p-3 rounded-full bg-gray-50 border border-gray-100">
-                        {React.createElement(icons[activeService] || Layout, { size: 24, className: "text-austral-clay" })}
-                     </div>
-
-                     <h3 className="text-4xl md:text-5xl font-serif mb-8 text-austral-dark leading-tight">
-                        {content.items[activeService].title}
-                     </h3>
-                     <p className="text-2xl font-light leading-relaxed mb-12 text-gray-800 max-w-lg">
-                        {content.items[activeService].desc}
-                     </p>
-                     
-                     <div className="grid md:grid-cols-2 gap-12 pt-12 border-t border-gray-100">
-                         <div>
-                            <h4 className="text-xs uppercase tracking-widest font-bold mb-6 text-austral-gold">Deep Dive</h4>
-                            <p className="text-gray-900 leading-relaxed text-base font-light max-w-xs">
-                                {content.items[activeService].detailedDesc}
-                            </p>
-                         </div>
-                         <div>
-                            <h4 className="text-xs uppercase tracking-widest font-bold mb-6 text-austral-gold">Features</h4>
-                            <ul className="space-y-4">
-                                {content.items[activeService].features?.map((feature, fIdx) => (
-                                    <li key={fIdx} className="text-sm text-gray-900 flex items-center gap-3">
-                                        <div className="w-1.5 h-1.5 bg-austral-clay rounded-full"></div>
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-                         </div>
-                     </div>
-                 </div>
-            </div>
-        </div>
-
-        {/* Mobile Accordion Layout */}
-        <div className="lg:hidden flex flex-col border-t border-gray-200">
-             {content.items.map((item, idx) => {
-                const isActive = activeService === idx;
-                const isHighlight = idx === 0;
-                return (
-                    <div key={idx} className="border-b border-gray-200 last:border-0">
-                        <button 
-                            onClick={() => setActiveService(isActive ? -1 : idx)}
-                            className={`w-full py-8 flex justify-between items-center text-left ${isHighlight ? 'bg-austral-clay/5 px-4' : 'px-2'}`}
-                        >
-                            <div className="flex items-center gap-4">
-                                <span className={`text-xs font-bold ${isHighlight ? 'text-austral-clay' : 'text-gray-400'}`}>0{idx+1}</span>
-                                <div className="flex flex-col">
-                                    <h3 className="text-xl font-serif text-austral-dark">{item.title}</h3>
-                                    {isHighlight && (
-                                      <span className="text-[10px] uppercase text-austral-gold font-bold tracking-wider mt-1">
-                                        {lang === 'es' ? 'Módulo clave' : 'Key module'}
-                                      </span>
-                                    )}
-                                </div>
-                            </div>
-                            {isActive ? <Minus className="w-5 h-5 text-austral-clay" /> : <Plus className="w-5 h-5 text-gray-400" />}
-                        </button>
-                        
-                        <div className={`overflow-hidden transition-all duration-500 ease-in-out px-4 ${isActive ? 'max-h-[800px] opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
-                            <p className="text-xl font-light mb-6 text-gray-900 leading-relaxed">{item.desc}</p>
-                            <p className="text-sm text-gray-800 mb-6 leading-relaxed border-l-2 border-austral-gold pl-4 max-w-lg">{item.detailedDesc}</p>
-                            <ul className="space-y-3 pl-4">
-                                {item.features?.map((feature, fIdx) => (
-                                    <li key={fIdx} className="text-sm text-gray-700 flex items-center gap-2">
-                                        <div className="w-1 h-1 bg-austral-clay rounded-full"></div>
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+        {/* Desktop: Interactive Cards */}
+        <div className="hidden lg:grid grid-cols-12 gap-8">
+          {/* Service List */}
+          <div className="col-span-5 space-y-3">
+            {services.map((service, idx) => {
+              const Icon = service.icon;
+              const isActive = activeService === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setActiveService(idx)}
+                  className={`w-full text-left p-6 rounded-2xl transition-all duration-300 group ${
+                    isActive
+                      ? 'glass etheria-glow'
+                      : 'hover:bg-onyx-800/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`p-3 rounded-xl transition-all duration-300 ${
+                        isActive
+                          ? `bg-gradient-to-br ${service.gradient}`
+                          : 'bg-onyx-700 group-hover:bg-onyx-600'
+                      }`}
+                    >
+                      <Icon
+                        className={`w-5 h-5 ${
+                          isActive ? 'text-white' : 'text-neutral-400'
+                        }`}
+                      />
                     </div>
-                )
-             })}
-        </div>
+                    <div>
+                      <h3
+                        className={`font-display font-semibold text-lg transition-colors ${
+                          isActive ? 'text-neutral-50' : 'text-neutral-300 group-hover:text-neutral-50'
+                        }`}
+                      >
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-neutral-500">{service.tagline}</p>
+                    </div>
+                    <ArrowRight
+                      className={`w-5 h-5 ml-auto transition-all ${
+                        isActive
+                          ? 'text-etheria-purple opacity-100 translate-x-0'
+                          : 'opacity-0 -translate-x-2'
+                      }`}
+                    />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
 
-        {/* Tech Stack Bar */}
-        <div className="py-16 md:py-20">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <h4 className="text-xs uppercase tracking-widest font-bold text-austral-clay whitespace-nowrap">
-              {content.stackTitle}
-            </h4>
-            <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4">
-              {content.stack?.map((tech, i) => (
-                <span key={i} className="text-lg font-serif italic text-gray-400 hover:text-austral-dark transition-colors cursor-default">{tech}</span>
-              ))}
+          {/* Service Detail */}
+          <div className="col-span-7">
+            <div
+              key={activeService}
+              className="glass rounded-3xl p-10 h-full flex flex-col justify-center animate-fade-in"
+            >
+              <div
+                className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${services[activeService].gradient} mb-6 w-fit`}
+              >
+                <ActiveIcon className="w-8 h-8 text-white" />
+              </div>
+
+              <h3 className="font-display text-3xl font-bold text-neutral-50 mb-2">
+                {services[activeService].title}
+              </h3>
+              <p className="text-etheria-cyan font-sans text-sm uppercase tracking-wider mb-6">
+                {services[activeService].tagline}
+              </p>
+
+              <p className="font-sans text-lg text-neutral-300 leading-relaxed mb-8">
+                {services[activeService].description}
+              </p>
+
+              <div className="space-y-3 mb-8">
+                {services[activeService].features.map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-etheria-purple/20">
+                      <Check className="w-4 h-4 text-etheria-purple" />
+                    </div>
+                    <span className="font-sans text-neutral-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-etheria-purple font-display font-semibold hover:gap-3 transition-all"
+              >
+                Get Started
+                <ArrowRight className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
 
-      </div>
-
-      {/* Cultural/Aesthetic visual break - Monochrome Andes */}
-      <div className="h-48 md:h-80 w-full overflow-hidden relative">
-            <img 
-                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop" 
-                alt="Andes Monochrome" 
-                className="w-full h-full object-cover grayscale contrast-125 opacity-80"
-            />
+        {/* Mobile: Stacked Cards */}
+        <div className="lg:hidden grid gap-6">
+          {services.map((service, idx) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={idx}
+                className="glass rounded-2xl p-6 card-hover"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div
+                    className={`p-3 rounded-xl bg-gradient-to-br ${service.gradient}`}
+                  >
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-semibold text-lg text-neutral-50">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-etheria-cyan">{service.tagline}</p>
+                  </div>
+                </div>
+                <p className="font-sans text-neutral-400 text-sm leading-relaxed mb-4">
+                  {service.description}
+                </p>
+                <div className="space-y-2">
+                  {service.features.slice(0, 2).map((feature, fIdx) => (
+                    <div key={fIdx} className="flex items-center gap-2 text-sm">
+                      <Check className="w-4 h-4 text-etheria-purple" />
+                      <span className="text-neutral-400">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <p className="font-sans text-neutral-400 mb-6">
+            Not sure which service is right for you?
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-3 btn-gradient px-8 py-4 rounded-full font-display font-semibold text-white"
+          >
+            Book a Free Strategy Call
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
     </section>
   );
 };
