@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
+import Manifesto from './components/Principles';
 import Services from './components/Services';
-import Principles from './components/Principles';
-import Testimonials from './components/Testimonials';
+import Process from './components/Process';
+import Pricing from './components/Testimonials';
 import Contact from './components/Contact';
-import { Menu, X, ArrowUp } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Principles', href: '#principles' },
-  { label: 'Success Stories', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Nosotros', href: '#manifiesto' },
+  { label: 'Precios', href: '#precios' },
+  { label: 'Contacto', href: '#contacto' },
 ];
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      setShowScrollTop(window.scrollY > 500);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -34,27 +32,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="font-sans antialiased bg-onyx-950 text-neutral-50 overflow-x-hidden">
-      {/* Sticky Navigation */}
+    <div className="font-sans antialiased bg-cream-50 text-onyx-950 overflow-x-hidden">
+      {/* Navigation */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'glass py-4'
+            ? 'bg-cream-50/90 backdrop-blur-md py-4 shadow-sm'
             : 'bg-transparent py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <a
-            href="#home"
+            href="#inicio"
             onClick={scrollToTop}
             className="relative z-50 flex items-center gap-2"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-etheria-purple to-etheria-cyan flex items-center justify-center">
-              <span className="text-white font-display font-bold text-lg">O</span>
+            <div className="w-10 h-10 rounded-xl bg-onyx-950 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">O</span>
             </div>
-            <span className="font-display text-xl font-bold tracking-tight text-neutral-50">
-              ONYXLABS
+            <span className="font-bold text-xl tracking-tight">
+              ONYX<span className="gradient-text-fun">LABS</span>
             </span>
           </a>
 
@@ -65,7 +63,7 @@ const App: React.FC = () => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="text-sm font-sans text-neutral-400 hover:text-neutral-50 transition-colors underline-animate"
+                    className="text-sm font-medium text-onyx-700 hover:text-onyx-950 transition-colors"
                   >
                     {item.label}
                   </a>
@@ -74,16 +72,16 @@ const App: React.FC = () => {
             </ul>
 
             <a
-              href="#contact"
-              className="btn-gradient px-6 py-2.5 rounded-full text-sm font-display font-semibold text-white"
+              href="#contacto"
+              className="btn-gradient px-6 py-2.5 rounded-full text-sm font-semibold text-white"
             >
-              Get Started
+              Empezar
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden z-50 text-neutral-50 p-2"
+            className="md:hidden z-50 p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -93,27 +91,26 @@ const App: React.FC = () => {
 
         {/* Mobile Overlay */}
         <div
-          className={`fixed inset-0 bg-onyx-950/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 ${
+          className={`fixed inset-0 bg-cream-50 z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 ${
             isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
         >
-          {navItems.map((item, idx) => (
+          {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-3xl font-display font-semibold text-neutral-50 hover:text-etheria-purple transition-colors"
-              style={{ transitionDelay: `${idx * 50}ms` }}
+              className="text-3xl font-bold text-onyx-950 hover:text-pop-magenta transition-colors"
             >
               {item.label}
             </a>
           ))}
           <a
-            href="#contact"
+            href="#contacto"
             onClick={() => setIsMenuOpen(false)}
-            className="mt-8 btn-gradient px-8 py-4 rounded-full text-lg font-display font-semibold text-white"
+            className="mt-8 btn-gradient px-8 py-4 rounded-full text-lg font-semibold text-white"
           >
-            Get Started
+            Empezar
           </a>
         </div>
       </nav>
@@ -121,95 +118,71 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main>
         <Hero />
+        <Manifesto />
         <Services />
-        <Principles />
-        <Testimonials />
+        <Process />
+        <Pricing />
         <Contact />
       </main>
 
       {/* Footer */}
-      <footer className="relative bg-onyx-900 py-20 px-6 border-t border-neutral-800">
+      <footer className="bg-onyx-950 text-white py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Top Footer */}
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div className="md:col-span-2">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-etheria-purple to-etheria-cyan flex items-center justify-center">
-                  <span className="text-white font-display font-bold text-lg">O</span>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
+                  <span className="text-onyx-950 font-bold text-lg">O</span>
                 </div>
-                <span className="font-display text-xl font-bold tracking-tight text-neutral-50">
-                  ONYXLABS
+                <span className="font-bold text-xl tracking-tight">
+                  ONYX<span className="gradient-text-fun">LABS</span>
                 </span>
               </div>
-              <p className="font-sans text-neutral-400 max-w-md mb-6">
-                Giving small businesses the unfair advantage through strategic AI implementation.
-                Enterprise-grade solutions, tailored for your scale and budget.
+              <p className="text-gray-400 max-w-sm mb-4">
+                La nueva era de colaboración humano + IA.
+                Construimos el futuro para que puedas vivirlo.
               </p>
-              <p className="font-serif text-lg italic text-etheria-purple">
-                "AI for the ambitious."
+              <p className="text-sm text-gray-500">
+                Hecho para humanos.
               </p>
             </div>
 
-            {/* Quick Links */}
+            {/* Navigation */}
             <div>
-              <h4 className="font-display font-semibold text-neutral-50 mb-4">Quick Links</h4>
+              <h4 className="font-bold mb-4 text-sm tracking-widest text-gray-400">NAVEGACIÓN</h4>
               <ul className="space-y-3">
-                {navItems.map((item) => (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      className="font-sans text-neutral-400 hover:text-neutral-50 transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
+                <li><a href="#servicios" className="text-gray-300 hover:text-white transition-colors">Servicios</a></li>
+                <li><a href="#manifiesto" className="text-gray-300 hover:text-white transition-colors">Nosotros</a></li>
+                <li><a href="#precios" className="text-gray-300 hover:text-white transition-colors">Precios</a></li>
+                <li><a href="#contacto" className="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* Social */}
             <div>
-              <h4 className="font-display font-semibold text-neutral-50 mb-4">Get In Touch</h4>
-              <ul className="space-y-3 font-sans text-neutral-400">
-                <li>
-                  <a href="mailto:hello@onyxlabs.ai" className="hover:text-neutral-50 transition-colors">
-                    hello@onyxlabs.ai
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+1-555-ONYX-LAB" className="hover:text-neutral-50 transition-colors">
-                    +1 (555) ONYX-LAB
-                  </a>
-                </li>
-                <li>San Francisco, CA</li>
+              <h4 className="font-bold mb-4 text-sm tracking-widest text-gray-400">CONECTA</h4>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Instagram</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">LinkedIn</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Twitter/X</a></li>
+                <li><a href="mailto:hola@onyxlabs.ai" className="text-gray-300 hover:text-white transition-colors">hola@onyxlabs.ai</a></li>
               </ul>
             </div>
           </div>
 
-          {/* Bottom Footer */}
-          <div className="pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-neutral-500">
-              &copy; {new Date().getFullYear()} ONYXLABS. All rights reserved.
+          {/* Bottom */}
+          <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-500">
+              © {new Date().getFullYear()} ONYXLABS. Todos los derechos reservados.
             </p>
-            <div className="flex items-center gap-6 text-sm text-neutral-500">
-              <a href="#" className="hover:text-neutral-300 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-neutral-300 transition-colors">Terms of Service</a>
+            <div className="flex items-center gap-6 text-sm text-gray-500">
+              <a href="#" className="hover:text-gray-300 transition-colors">Privacidad</a>
+              <a href="#" className="hover:text-gray-300 transition-colors">Términos</a>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Scroll to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-4 rounded-full bg-gradient-to-br from-etheria-purple to-etheria-cyan text-white shadow-lg transition-all duration-300 hover:scale-110 z-40 ${
-          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="w-5 h-5" />
-      </button>
     </div>
   );
 };

@@ -1,187 +1,179 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Star, Quote, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Star } from 'lucide-react';
 
-interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-  result: string;
-  avatar: string;
+interface PricingTier {
+  name: string;
+  tagline: string;
+  price: string;
+  period: string;
+  features: string[];
+  cta: string;
+  highlighted?: boolean;
 }
 
-const testimonials: Testimonial[] = [
+const pricingTiers: PricingTier[] = [
   {
-    quote:
-      "ONYXLABS automated our entire customer onboarding process. What used to take our team 3 hours per client now takes 15 minutes. It's like we hired 10 people overnight.",
-    author: 'Sarah Chen',
-    role: 'CEO',
-    company: 'Bloom Marketing Co.',
-    result: '12x faster onboarding',
-    avatar: 'SC',
+    name: 'LA AUDITORÍA',
+    tagline: 'Para empezar',
+    price: '$5,000',
+    period: 'único',
+    features: [
+      'Análisis profundo de tu negocio',
+      'Identificación de cuellos de botella',
+      'Mapa de implementación',
+      'ROI proyectado',
+    ],
+    cta: 'Lo quiero',
   },
   {
-    quote:
-      "We were skeptical about AI—it felt like something only big tech could afford. ONYXLABS proved us wrong. The chatbot they built handles 80% of our support tickets automatically.",
-    author: 'Marcus Johnson',
-    role: 'Founder',
-    company: 'TechFix Solutions',
-    result: '80% ticket automation',
-    avatar: 'MJ',
+    name: 'EL ARQUITECTO',
+    tagline: 'Más popular',
+    price: '$15,000',
+    period: '/mes',
+    features: [
+      'Todo en La Auditoría',
+      'Construcción completa de tu sistema',
+      'Entrenamiento personalizado',
+      'Loops de crecimiento ilimitados',
+      'Sincronías de estrategia semanales',
+      'Acceso a soporte VIP',
+    ],
+    cta: '¡Vamos!',
+    highlighted: true,
   },
   {
-    quote:
-      "Their predictive analytics gave us visibility we never had. We now forecast demand three months out and have cut inventory costs by 40%. Game changer.",
-    author: 'Elena Rodriguez',
-    role: 'Operations Director',
-    company: 'Verde Supply Co.',
-    result: '40% cost reduction',
-    avatar: 'ER',
+    name: 'EL SOCIO',
+    tagline: 'Para los serios',
+    price: 'Custom',
+    period: '',
+    features: [
+      'Estrategia a nivel directivo',
+      'Entrada a nuevos mercados',
+      'Automatización de prep para exit',
+      'Retainer dedicado',
+    ],
+    cta: 'Hablemos',
   },
 ];
 
-const stats = [
-  { value: '500+', label: 'Small Businesses Served' },
-  { value: '$12M+', label: 'Client Savings Generated' },
-  { value: '98%', label: 'Client Retention Rate' },
-  { value: '4.9', label: 'Average Rating', hasStar: true },
-];
-
-export const Testimonials: React.FC = () => {
+export const Pricing: React.FC = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const { ref: statsRef, inView: statsInView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const { ref: quoteRef, inView: quoteInView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="testimonials" className="relative py-32 bg-onyx-800 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="orb orb-cyan w-[400px] h-[400px] -top-20 right-0 opacity-15" />
-        <div className="orb orb-purple w-[300px] h-[300px] bottom-20 -left-20 opacity-15" />
-        <div className="absolute inset-0 grid-pattern opacity-20" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <div
-          ref={ref}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <span className="inline-block text-sm font-sans text-etheria-cyan tracking-widest uppercase mb-4">
-            Success Stories
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-50 mb-6">
-            Real Results From
-            <span className="gradient-text"> Real Businesses</span>
-          </h2>
-          <p className="font-sans text-lg text-neutral-400 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what small business owners
-            say about working with ONYXLABS.
-          </p>
+    <>
+      {/* Pricing Section */}
+      <section id="precios" className="relative py-24 md:py-32 section-dark overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-pop-cyan/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pop-magenta/20 rounded-full blur-3xl" />
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-20">
-          {testimonials.map((testimonial, idx) => (
-            <div
-              key={idx}
-              className={`glass rounded-2xl p-8 flex flex-col card-hover transition-all duration-500 ${
-                inView
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${idx * 150}ms` }}
-            >
-              {/* Quote icon */}
-              <Quote className="w-10 h-10 text-etheria-purple/30 mb-6" />
+        <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <div
+            className={`text-center mb-16 transition-all duration-700 ${
+              inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Elige Tu <span className="accent-italic gradient-text-fun">Velocidad</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              Sin cobros por hora. Solo resultados que ponen nerviosos a tus competidores.
+            </p>
+          </div>
 
-              {/* Quote text */}
-              <p className="font-sans text-neutral-300 leading-relaxed mb-8 flex-grow">
-                "{testimonial.quote}"
-              </p>
-
-              {/* Result badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-etheria-purple/10 border border-etheria-purple/20 w-fit mb-6">
-                <span className="text-sm font-display font-semibold text-etheria-purple">
-                  {testimonial.result}
-                </span>
-              </div>
-
-              {/* Author */}
-              <div className="flex items-center gap-4 pt-6 border-t border-neutral-700">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-etheria-purple to-etheria-cyan flex items-center justify-center">
-                  <span className="font-display font-bold text-white text-sm">
-                    {testimonial.avatar}
-                  </span>
-                </div>
-                <div>
-                  <p className="font-display font-semibold text-neutral-50">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-sm text-neutral-500">
-                    {testimonial.role}, {testimonial.company}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Stats Section */}
-        <div
-          ref={statsRef}
-          className={`glass rounded-3xl p-8 md:p-12 transition-all duration-1000 ${
-            statsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {pricingTiers.map((tier, idx) => (
               <div
                 key={idx}
-                className="text-center"
-                style={{ transitionDelay: `${idx * 100}ms` }}
+                className={`rounded-3xl p-8 transition-all duration-500 ${
+                  tier.highlighted ? 'card-highlight scale-105' : 'card-dark'
+                } ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${idx * 150}ms` }}
               >
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="font-display text-4xl md:text-5xl font-bold gradient-text">
-                    {stat.value}
-                  </span>
-                  {stat.hasStar && (
-                    <Star className="w-6 h-6 text-accent-gold fill-accent-gold" />
-                  )}
+                {/* Tag */}
+                {tier.highlighted && (
+                  <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-pop-cyan/20 text-pop-cyan text-xs font-bold mb-4">
+                    <Star className="w-3 h-3 fill-pop-cyan" />
+                    {tier.tagline}
+                  </div>
+                )}
+                {!tier.highlighted && (
+                  <p className="text-gray-500 text-sm mb-4">{tier.tagline}</p>
+                )}
+
+                {/* Name */}
+                <h3 className="text-xl font-bold mb-4">{tier.name}</h3>
+
+                {/* Price */}
+                <div className="mb-6">
+                  <span className="text-4xl font-bold">{tier.price}</span>
+                  <span className="text-gray-500 ml-1">{tier.period}</span>
                 </div>
-                <p className="font-sans text-sm text-neutral-400">
-                  {stat.label}
-                </p>
+
+                {/* Features */}
+                <ul className="space-y-3 mb-8">
+                  {tier.features.map((feature, fIdx) => (
+                    <li key={fIdx} className="flex items-start gap-3 text-gray-300">
+                      <Check className={`w-5 h-5 mt-0.5 flex-shrink-0 ${tier.highlighted ? 'text-pop-cyan' : 'text-gray-500'}`} />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <button
+                  className={`w-full py-4 rounded-full font-semibold transition-all ${
+                    tier.highlighted
+                      ? 'btn-gradient'
+                      : 'border border-gray-700 hover:border-white hover:bg-white/5'
+                  }`}
+                >
+                  {tier.cta}
+                </button>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* CTA */}
-        <div
-          className={`text-center mt-16 transition-all duration-1000 delay-300 ${
-            statsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <p className="font-sans text-neutral-400 mb-6">
-            Ready to become our next success story?
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-3 btn-gradient px-8 py-4 rounded-full font-display font-semibold text-white"
+      {/* Quote Section */}
+      <section className="relative py-24 md:py-32 bg-cream-50 overflow-hidden">
+        {/* Decorative spheres */}
+        <div className="sphere sphere-gradient-1 w-20 h-20 top-10 left-10 animate-float opacity-40" />
+        <div className="sphere sphere-gradient-2 w-16 h-16 bottom-20 right-20 animate-float-delayed opacity-40" />
+
+        <div ref={quoteRef} className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <div
+            className={`transition-all duration-1000 ${
+              quoteInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
           >
-            Start Your Transformation
-            <ArrowRight className="w-5 h-5" />
-          </a>
+            <blockquote className="text-2xl md:text-4xl font-bold leading-relaxed mb-8">
+              "ONYX AI no solo nos dio herramientas; nos devolvieron
+              <span className="gradient-text-warm"> nuestra vida</span>. Estamos facturando 5x más
+              y la verdad es que estoy en la playa."
+            </blockquote>
+
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pop-cyan to-pop-magenta flex items-center justify-center text-white font-bold">
+                EV
+              </div>
+              <div className="text-left">
+                <p className="font-bold">Elena Vance</p>
+                <p className="text-onyx-700 text-sm">CEO, Vance Capital Groups</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
-export default Testimonials;
+export default Pricing;
