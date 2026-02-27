@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import AssistantStudio from './components/AssistantStudio';
+import BodegaInventory from './components/BodegaInventory';
 import Contact from './components/Contact';
 import { CONTENT } from './constants';
 import { Language } from './types';
@@ -90,6 +91,7 @@ const App: React.FC = () => {
         <Hero lang={lang} />
         <Services lang={lang} />
         <AssistantStudio lang={lang} />
+        <BodegaInventory lang={lang} />
         <Contact lang={lang} />
       </main>
 
