@@ -23,51 +23,51 @@ const Pricing: React.FC = () => {
       </nav>
 
       <div className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Elige el plan perfecto para ti
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Precios de lanzamiento. 🔒 Bloquéalos hoy.
             </h1>
             <p className="text-lg text-surface-500 max-w-xl mx-auto">
-              Todos los planes incluyen acceso a nuestras herramientas de IA. Cancela cuando quieras.
+              Los miembros fundadores mantienen este precio para siempre.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {PRICING_TIERS.map((tier) => (
               <div
                 key={tier.name}
-                className={`rounded-xl p-8 border transition-colors ${
+                className={`rounded-2xl p-7 border transition-all duration-300 h-full relative group ${
                   tier.highlighted
-                    ? 'bg-accent/5 border-accent/30 ring-1 ring-accent/20'
-                    : 'bg-surface-100 border-surface-200 hover:border-surface-300'
+                    ? 'bg-accent/5 border-accent/40 ring-2 ring-accent/20 hover:ring-accent/40 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/10 scale-[1.02]'
+                    : 'bg-surface-100 border-surface-200 hover:border-surface-300 hover:bg-surface-50 hover:shadow-lg hover:shadow-black/20'
                 }`}
               >
                 {tier.highlighted && (
-                  <div className="text-xs font-semibold text-accent uppercase tracking-wider mb-4">
-                    Más popular
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-black text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">
+                    ⭐ RECOMENDADO
                   </div>
                 )}
-                <h3 className="text-xl font-bold text-white">{tier.name}</h3>
-                <div className="mt-4 mb-2">
-                  <span className="text-4xl font-bold text-white">{tier.price}</span>
+                <h3 className="text-lg font-bold text-white">{tier.name}</h3>
+                <div className="mt-3 mb-1.5">
+                  <span className="text-3xl font-extrabold text-white">{tier.price}</span>
                   <span className="text-surface-500 text-sm">{tier.period}</span>
                 </div>
-                <p className="text-sm text-surface-500 mb-6">{tier.description}</p>
+                <p className="text-xs text-surface-500 mb-5 leading-relaxed">{tier.description}</p>
                 <Link
                   to="/signup"
-                  className={`block text-center py-3 px-6 rounded-lg font-semibold text-sm transition-colors mb-8 ${
+                  className={`block text-center py-2.5 px-5 rounded-xl font-semibold text-sm transition-all mb-6 ${
                     tier.highlighted
-                      ? 'bg-accent hover:bg-accent-light text-black'
+                      ? 'bg-accent hover:bg-accent-light text-black hover:shadow-lg hover:shadow-accent/20'
                       : 'bg-surface-200 hover:bg-surface-300 text-white'
                   }`}
                 >
                   {tier.cta}
                 </Link>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-surface-600">
-                      <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-surface-600">
+                      <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${tier.highlighted ? 'text-accent' : 'text-surface-400'}`} />
                       {f}
                     </li>
                   ))}
@@ -76,7 +76,13 @@ const Pricing: React.FC = () => {
             ))}
           </div>
 
-          <div className="mt-16 text-center">
+          <div className="text-center mt-12">
+            <p className="text-base text-surface-500">
+              🛡️ Garantía de 7 días — Si no te convence, te devolvemos el 100%.
+            </p>
+          </div>
+
+          <div className="mt-8 text-center">
             <p className="text-surface-500 text-sm">
               ¿Necesitas un plan personalizado?{' '}
               <a href="mailto:hola@onyxlabs.ai" className="text-accent hover:text-accent-light font-medium">
