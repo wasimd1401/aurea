@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import ContentStudio from './pages/ContentStudio';
 import ImageCreator from './pages/ImageCreator';
 import SettingsPage from './pages/SettingsPage';
+import MyContent from './pages/MyContent';
 import Pricing from './pages/Pricing';
 import DashboardLayout from './components/DashboardLayout';
 
@@ -43,6 +44,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout><Dashboard /></DashboardLayout></ProtectedRoute>} />
       <Route path="/content-studio" element={<ProtectedRoute><DashboardLayout><ContentStudio /></DashboardLayout></ProtectedRoute>} />
       <Route path="/image-creator" element={<ProtectedRoute><DashboardLayout><ImageCreator /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/my-content" element={<ProtectedRoute><DashboardLayout><MyContent /></DashboardLayout></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><DashboardLayout><SettingsPage /></DashboardLayout></ProtectedRoute>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
